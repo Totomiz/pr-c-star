@@ -1,0 +1,1 @@
+gcc -o my.o main.c -w
