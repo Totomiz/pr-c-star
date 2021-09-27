@@ -70,6 +70,10 @@ void insert() {
     Pool[num_part].numberId = inputNum;
     printf("input name of item:\n");
     read_line(Pool[num_part].name, NAME_LENGTH);
+
+    printf("input remain num of item:\n");
+    scanf("%d", &inputNum);
+    Pool[num_part].remainNum = inputNum;
     num_part++;
 }
 
@@ -89,6 +93,23 @@ void search() {
 
 
 void update() {
+    printf("Enter update item numID:\n");
+    int id;
+    scanf("%d", &id);
+    int i = find_exist(id);
+
+    if (i >= 0) {
+        printf("find item:\n");
+        pretyPrint(Pool[i]);
+        printf("Enter update item remainNumber:\n");
+        int number;
+        scanf("%d", &number);
+        Pool[i].remainNum = number;
+        printf("After change where ID = %d item remainNumber:\n", Pool[i].numberId);
+        pretyPrint(Pool[i]);
+    } else {
+        printf("Not find numID = %d\n", id);
+    }
 
 }
 
