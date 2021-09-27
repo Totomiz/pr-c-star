@@ -13,6 +13,7 @@
 #include "invert.h"
 #include "readline.h"
 
+//当前的数量
 int num_part = 0;
 
 #define println(...) printf(__VA_ARGS__); printf("\n")
