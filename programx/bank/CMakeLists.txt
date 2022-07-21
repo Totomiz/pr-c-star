@@ -1,0 +1,1 @@
+add_executable(bank bank-management-system.c)

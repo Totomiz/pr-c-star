@@ -1,0 +1,1 @@
+add_executable(web web_server.c simpletun.c)

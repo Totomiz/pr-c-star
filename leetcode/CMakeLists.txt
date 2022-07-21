@@ -1,0 +1,1 @@
+add_executable(lc01_remove_duplicaties Lc01_remove_duplicaties.c)
