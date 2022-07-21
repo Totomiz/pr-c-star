@@ -1,0 +1,1 @@
+add_library(basic Gloable.c Gloable.h)
