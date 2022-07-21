@@ -9,4 +9,5 @@
 #define OK              1
 #define ERROR           -1
 #define INFEASIBLE      1   //不能实行的；不可能的；办不到的;
+typedef int Status;
 #endif //C_STAR_GLOABLE_H

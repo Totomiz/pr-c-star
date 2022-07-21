@@ -18,5 +18,5 @@ int main(){
     printf("int size %lu 字节\n", sizeof(int));
     printf("char size %lu 字节\n", sizeof(float ));
     free(p);
-    system("ls");
+    // system("ls");
 }
