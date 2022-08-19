@@ -241,7 +241,11 @@ int main() {
         printf("num of for e=:%d\n", *e);
     }
 
-    //8.
+    //8 、输入输出
+    int c;
+    while ((c = getchar()) != EOF) {
+        putchar(c);
+    }
 
     return 0;
 }
