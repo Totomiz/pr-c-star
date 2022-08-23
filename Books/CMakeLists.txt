@@ -1,6 +1,3 @@
-cmake_minimum_required(VERSION 3.14)
-project(DS_YWM)
+project(C_Programing_Language_V2)
 set(CMAKE_C_STANDARD 11)
-add_subdirectory(Course)
-add_subdirectory(Excecise)
-add_subdirectory(Commom)
+add_subdirectory(C_Programing_Language_V2)
