@@ -10,6 +10,7 @@ add_subdirectory(programx)
 add_subdirectory(utils)
 add_subdirectory(gram_dn)
 add_subdirectory(grammar)
+add_subdirectory(Books)
 
 #cmake_minimum_required(VERSION 3.14)
 #project(DS_YWM)
