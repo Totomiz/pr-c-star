@@ -1,3 +1,6 @@
 #add_subdirectory(ch01_introducing)
 add_executable(ch01_introducing ch01_introducing/cource.c)
 add_executable(ch02_fundamentals ch02_fundamentals/1_simple_program.c)
+add_executable(ch07_basic_typs ch07_basic_typs/cource.c)
+add_executable(ch06_loops ch06_loops/cource.c)
+add_executable(ch03_formate_input_output ch03_formate_input_output/cource.c)

@@ -47,6 +47,14 @@ int main() {
   int scan_i;
   printf("input an integer:\n");
   scanf("%d", &scan_i);
-  printf("scanf i=%d", scan_i);
+  printf("scanf i=%d\n", scan_i);
+
+  /**
+   * 6. 预处理
+   * #define PI 3.14159
+   * */
+
+#define PI 3.14159
+  printf("#define PI= %f\n", PI);
   return 0;
 }
