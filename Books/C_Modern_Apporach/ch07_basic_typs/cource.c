@@ -47,5 +47,36 @@ int main() {
   typedef int STATUS;
   STATUS status_a = 100;
   printf("tpyedef status:%d\n", status_a);
+
+  /**
+   * 5.读写字符scanf()/printf()
+   * 不会跳过空白字符
+   */
+  char scanf_char;
+  printf("input a char (by scanf method):\n");
+  scanf("%c", &scanf_char);
+  printf("out you char value(by printf):%c\t\n", scanf_char);
+
+  while (getchar() != '\n');
+  printf("Skip rest of line...\n");
+  /**
+   * 6.读写字符
+   * getChar()/ 读取输入字符，一次只能单字符，不会跳过空白字符
+   * putChar(ch) 一次只能单字符输出
+   *
+   */
+
+  printf("\ninput (by getchar() single char ):");
+  int get_char = getchar();
+  putchar(get_char);
+
+  printf("\n__________________\n");
+  printf("output (by getChar()) :%c\n", get_char);
+
+  printf("+++++++++++++++++++++\n");
+  printf("++++++input to output++++++\n");
+  while ((get_char = getchar()) != EOF) {
+	putchar(get_char);
+  }
   return 0;
 }

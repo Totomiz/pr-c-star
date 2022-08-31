@@ -18,7 +18,9 @@ int main() {
 Label_While_Break:
   printf("this is goto mark while(1) Label\n");
 
-
+  /**
+	* 无限循环for(;;)
+	*/
   for(;;){
     printf("loop for(;;) unLimit %lld\n", unLimit++);
     if (unLimit > 200) {
