@@ -1,11 +1,18 @@
-#include <sys/socket.h>
-#include <sys/un.h>
-#include <arpa/inet.h>
+
 #include <unistd.h>
 #include <string.h>
 #include <stdio.h>
 
-#define PORT 10001                       // 服务器监听端口
+#define PORT 80                      // 服务器监听端口
+#ifdef _WIN32
+  #include <winsock2.h>
+  #pragma comment(lib, "wsock32.lib")
+#elif __linux__
+  #include <sys/socket.h>
+  #include <sys/un.h>
+  #include <arpa/inet.h>
+#elif __unix__
+#endif
 
 int main() {
 

@@ -1,1 +1,5 @@
-add_executable(web web_server.c simpletun.c)
+add_executable(web_server web_server.c)
+add_executable(web_tun  simpletun.c)
+target_link_libraries(web_server wsock32 ws2_32)
+add_executable(myping  myping.c)
+target_link_libraries(myping wsock32 ws2_32)

@@ -10,7 +10,7 @@ int main() {
    * 打印
    * printf("this is c program")
    * */
-  printf("this is a program");
+  printf("this is a C program");
   return 0;
 
-}
+} 

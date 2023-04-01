@@ -15,18 +15,20 @@ int main() {
   int age = 18;
   printf("class is-> %c,age is->%d,next age is->%d\n", sign, age, age + 1);
 
-  int a,b;
-  printf("input int number a+b:");
-  scanf("%d+%d",&a,&b);
-  printf("scanf value is a=%d b=%d sum=%d\n",a,b,a+b);
+  int a, b;
+  printf("input int number a+b:\n");
+  scanf("%d+%d", &a, &b);
+  printf("scanf value is a=%d b=%d sum=%d\n", a, b, a + b);
 
   short short_v = 2;
   int int_v = 10;
+  unsigned int u_int_v = 65535;
   long long_v = 1000;
   long long long_long_v = 1000;
   float float_v = 1.3f;
   double double_v = 0.2345678901;
   printf("short=%d\t sizeof(short)=%zu\n", short_v, sizeof(short));
+  printf("unsigned int=%d\t sizeof(unsigned int)=%zu\n", int_v, sizeof(int));
   printf("int=%d\t sizeof(int)=%zu\n", int_v, sizeof(int));
   printf("long=%lu\t sizeof(long)=%zu\n", long_v, sizeof(long));
   printf("long=%llu\t sizeof(long long)=%zu\n", long_long_v, sizeof(long long));
@@ -36,6 +38,14 @@ int main() {
   printf("float(m.p=.10) =%.10f\t sizeof(float)=%zu\n", float_v, sizeof(float));
   printf("float(m.p=.10) =%.10lf\t sizeof(double)=%zu\n", double_v, sizeof(double));
   printf("float(m.p=.6) =%.6lf\t sizeof(double)=%zu\n", double_v, sizeof(double));
+
+  printf("float(m.p=.6) =%.6lf\t sizeof(double)=%zu\n", double_v, sizeof(double));
+  printf("%-p\n", "test1");
+  char *p;
+  p = "test";
+  printf("%p\n", "test");
+  printf("%p\n", p);
+  printf("%p\n", *p);
   /*
    * 2.字符类型char
    * */

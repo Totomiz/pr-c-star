@@ -155,7 +155,7 @@ int removeDuplicates(int *nums, int numsSize) {
 //        printf("%d", a[i]);
 //    }
 //    printf("sum=%d", sum);
-////    char *name = "zhangtong";
+////    char *name = "ZT";
 ////    char *c = base64_encode(name);
 ////    char *d = "a";
 ////    Base64encode(d, name, strlen(name));

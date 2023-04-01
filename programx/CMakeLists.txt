@@ -1,2 +1,7 @@
+#cmake_minimum_required(VERSION 3.14)
+#project(programx)
+#set(CMAKE_C_STANDARD 99)
 add_subdirectory(department-store)
 add_subdirectory(bank)
+add_executable(student1 student1/gen_number.c)
+add_executable(student1_1 student1/gen_number_mutix.c)
