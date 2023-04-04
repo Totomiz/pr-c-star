@@ -1,7 +1,10 @@
 
-#cmake_minimum_required(VERSION 3.14)
-#project(C_Modern_Approach)
-#set(CMAKE_C_STANDARD 99)
+cmake_minimum_required(VERSION 3.14)
+project(C_Modern_Approach)
+set(CMAKE_C_STANDARD 99)
+
+add_subdirectory(common)
+
 add_executable(ch01_introducing ch01_introducing/course.c)
 add_executable(ch02_fundamentals ch02_fundamentals/1_simple_program.c)
 add_executable(ch07_basic_typs ch07_basic_typs/course.c)
@@ -33,4 +36,11 @@ add_executable(ch17_advance_use_pointer_2 ch17_advance_use_pointer/LinkList.c ch
 add_executable(ch19_program_design_1 ch19_program_design/cs1_stack.h ch19_program_design/cs1_stack_impl1.c)
 add_executable(ch19_program_design_2 ch19_program_design/cs1_stack.h ch19_program_design/cs1_stack_impl2.c)
 add_executable(ch19_program_design_3 ch19_program_design/cs1_stack.h ch19_program_design/cs1_stack_impl3.c)
+
+add_executable(ch20_low_level_programming_1 ch20_low_level_programming/course1_bit_operator.c)
+add_executable(ch20_low_level_programming_2 ch20_low_level_programming/course2_other.c)
+
 add_executable(ch22_io_1 ch22_io/course1_scanf_tips.c)
+add_executable(ch22_io_2 ch22_io/course2_simple_cat.c)
+add_executable(ch22_io_3 ch22_io/course4_file_operator.c)
+target_link_libraries(ch22_io_3 utils)

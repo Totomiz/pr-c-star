@@ -21,4 +21,5 @@ int main(int argc, char *argv[]) {
 
   printf("b=%d", b);
   exit(0);
+  return 0;
 }
