@@ -139,20 +139,20 @@ void save_input_to_file(const char *filename) {
  * 创建临时文件，写入字符，然后打印，在window创建临时文件由于权限导致失败，在我的虚拟机linux环境上测试通过
  */
 void temp_file_no_name() {
-  errno=0;
+  errno = 0;
   FILE *fp = tmpfile();
   if (fp == NULL) {
 	printf("create file failed: %s\n", strerror(errno));
 	return;
   }
 
-  fputs("this is temp file",fp);
+  fputs("this is temp file", fp);
   char ch;
   //重置指针到开头
   rewind(fp);
-  while ((ch=fgetc(fp))!=EOF){
-    printf("%c",ch);
-    fflush(fp);
+  while ((ch = fgetc(fp)) != EOF) {
+	printf("%c", ch);
+	fflush(fp);
   }
   fclose(fp);
 }
@@ -160,37 +160,108 @@ void temp_file_no_name() {
 /**
  * 创建临时文件（有名字），写入字符，然后打印，在window创建临时文件由于权限导致失败，在我的虚拟机linux环境上测试通过
  */
-void temp_file_with_name(){
-  errno=0;
-  char *name=tmpnam(NULL);
-  FILE *fp= fopen(name,"w+");
+void temp_file_with_name() {
+  errno = 0;
+  char *name = tmpnam(NULL);
+  FILE *fp = fopen(name, "w+");
   if (fp == NULL) {
 	printf("create file failed: %s\n", strerror(errno));
 	return;
   }
 
-  printf("temp file name is :%s",name);
-  fputs("this is temp file",fp);
+  printf("temp file name is :%s", name);
+  fputs("this is temp file", fp);
   char ch;
   //重置指针到开头
   rewind(fp);
-  while ((ch=fgetc(fp))!=EOF){
-	printf("%c",ch);
+  while ((ch = fgetc(fp)) != EOF) {
+	printf("%c", ch);
 	fflush(fp);
   }
   fclose(fp);
+}
+
+void save_input_to_block() {
+
+  int blocksize = 1024;
+  errno = 0;
+  printf("input file name:\n");
+  CString file_name = read_line();
+  FILE *file = fopen(file_name, "wb");
+  free(file_name);
+  if (file == NULL) {
+	printf("create block file fail :%s", strerror(errno));
+	return;
+  }
+  int i = 0;
+  char buffer[1024];
+  while (1) {
+	printf("input block #%d string:\n", i);
+	fgets(buffer, 1024, stdin);
+	if (strncmp("exit", buffer, 4) == 0) {
+	  break;
+	}
+	fwrite(buffer, sizeof(char), blocksize, file);
+	fflush(file);
+	i++;
+  }
+  fclose(file);
+  // 改进版：避免在文件中出现多余的字符或乱码
+  // while (1) {
+  // printf("input block #%d string:\n", i);
+  // fgets(buffer, 1024, stdin);
+  // if (strncmp("exit", buffer, 4) == 0) {
+  //   break;
+  // }
+  // size_t len = strlen(buffer);
+  // fwrite(buffer, sizeof(char), len, file);
+  // fflush(file);
+  // i++;
+  // }
+}
+
+void show_block_file() {
+
+  int blocksize = 1024;
+  errno = 0;
+  printf("input file name:\n");
+  CString file_name = read_line();
+  FILE *file = fopen(file_name, "rb");
+  free(file_name);
+  if (file == NULL) {
+	printf("create block file fail :%s", strerror(errno));
+	return;
+  }
+  int i = 0;
+  char buffer[1024];
+  while (fread(buffer, sizeof(char), 1024, file)) {
+	printf("output block #%d string:%s\n", i, buffer);
+	i++;
+  }
+  fclose(file);
+  //改进版：读方式
+  // while (1) {
+  // size_t len = fread(buffer, sizeof(char), 1024, file);
+  // if (len == 0) {
+  //   break;
+  // }
+  // printf("output block #%d string:%.*s\n", i, (int)len, buffer);
+  // i++;
+  // }
 }
 
 int main() {
   int mode;
 
   while (1) {
-	printf("\ninput mode:\n");
-	printf("0 quit  1 input_file 2. print file\n");
-	printf("3 use freopen attach stdout stream\n");
+	printf("\ninput option:\n");
+	printf("0 quit  1 input_file 2 print default file\n");
+	printf("3 use freopen function attach stdout stream\n");
 	printf("4 save stdin input to file\n");
-	printf("5 tmpfile no name\n");
-	printf("6 temp file with name\n");
+	printf("5 use tmpfile function generate temp file no name\n");
+	printf("6 use tmpnam function create temp file with name\n");
+	printf("7 save stdin input to file with fwrite\n");
+	printf("8 Read and print the file created in option 7 using the fread function.\n");
 	setbuf(stdin, NULL);
 
 	scanf("%d", &mode);
@@ -201,14 +272,17 @@ int main() {
 		input_file();
 		break;
 	  }
+
 	  case 2: {
 		print_file();
 		break;
 	  }
+
 	  case 3: {
 		attach_to_file(FILENAME);
 		break;
 	  }
+
 	  case 4: {
 		save_input_to_file(FILENAME);
 		break;
@@ -223,7 +297,19 @@ int main() {
 		temp_file_with_name();
 		break;
 	  }
-	  default:break;
+
+	  case 7: {
+		setbuf(stdin, NULL);
+		save_input_to_block();
+		break;
+	  }
+
+	  case 8: {
+		setbuf(stdin, NULL);
+		show_block_file();
+		break;
+	  }
+	  default: break;
 	}
   }
 }
