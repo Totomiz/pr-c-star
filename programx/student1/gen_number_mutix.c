@@ -3,7 +3,7 @@
 #include <time.h>
 #include <stdbool.h>
 
-#define TOTAL_ITEM 100
+#define TOTAL_ITEM 200
 struct LIMIT{
   int x1_max;
   int x2_max;
@@ -37,8 +37,8 @@ int main() {     // Use current time as seed for random generator
   while (k <= TOTAL_ITEM) {
     // srand(time(0));
 
-	  minuend = rand_num(100,50);//被减数
-	  subtrahend = rand_num(30,1); //减数
+	  minuend = rand_num(30,20);//被减数
+	  subtrahend = rand_num(10,1); //减数
 
 	  //
 	  // if (minuend <= 20 && minuend>10 && subtrahend < 10 && subtrahend > 0 && (subtrahend+minuend)>=25) {
