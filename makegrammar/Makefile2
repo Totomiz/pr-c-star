@@ -8,4 +8,4 @@ three:
 	touch three
 	touch four
 clean:
-	rm -f one two three
+	rm -f one two three four
