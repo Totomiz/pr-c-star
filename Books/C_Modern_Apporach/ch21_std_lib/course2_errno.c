@@ -10,10 +10,9 @@
 int main(int c, char *a[]) {
   FILE *fp;
   int num;
-
+  errno = 0;//每次使用前最好重置0
   fp = fopen("test.txt", "r");
 
-  errno = 0;//每次使用前最好重置0
   if (fp == NULL) {
 	printf("Error opening file: %s\n", strerror(errno));
   }
