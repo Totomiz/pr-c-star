@@ -40,6 +40,9 @@ add_executable(ch19_program_design_3 ch19_program_design/cs1_stack.h ch19_progra
 add_executable(ch20_low_level_programming_1 ch20_low_level_programming/course1_bit_operator.c)
 add_executable(ch20_low_level_programming_2 ch20_low_level_programming/course2_other.c)
 
+add_executable(ch21_std_lib_1 ch21_std_lib/course1_signal.c)
+add_executable(ch21_std_lib_2 ch21_std_lib/course2_errno.c)
+
 add_executable(ch22_io_1 ch22_io/course1_scanf_tips.c)
 add_executable(ch22_io_2 ch22_io/course2_simple_cat.c)
 add_executable(ch22_io_3 ch22_io/course4_file_operator.c)
