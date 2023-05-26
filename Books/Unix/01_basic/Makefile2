@@ -1,0 +1,33 @@
+CC := gcc
+CFLAGS := -Wall
+LDLIBS := -lapue -lbsd
+
+# 获取所有 .c 文件的名称
+SRCS := $(wildcard *.c)
+
+# 定义输出目录和可执行文件
+OUT_PUT_DIR := output
+
+# 将 .c 文件的名称替换为对应的 .o 和可执行文件的名称
+OBJS := $(patsubst %.c, output/%.o, $(SRCS))
+BINS := $(patsubst %.c, output/%, $(SRCS))
+
+# 创建输出目录
+$(OUT_PUT_DIR):
+	mkdir -p $(OUT_PUT_DIR)
+
+# 生成可执行文件的规则
+output/%: output/%.o
+	$(CC) $(CFLAGS) $< $(LDLIBS) -o $@
+
+# 生成 .o 文件的规则
+output/%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# 定义默认目标（即 all），使其依赖于所有的可执行文件
+all: output $(BINS)
+
+# 清理规则
+clean:
+	rm -f $(OBJS) $(BINS)
+	rm -rf $(OUT_PUT_DIR)
