@@ -8,7 +8,7 @@ add_executable(01_basic_02_cp 01_basic/02_cp.c)
 add_executable(02_standard_impl_open_max 02_standard_impl/open_max.c)
 add_executable(02_standard_impl_fc_open 02_standard_impl/fc_open.c)
 add_executable(04_file_and_dir 04_file_and_dir/stat_mode.c)
-add_executable(06_process 06_process_memory1/memory-layout.c)
+add_executable(06_process_memory1 06_process/memory-layout.c)
 
 # 指定APUE库的头文件和库文件路径
 include_directories(/usr/include)

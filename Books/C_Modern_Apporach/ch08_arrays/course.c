@@ -13,6 +13,8 @@
 #define SIZE(array) ((int)(sizeof(array)/ sizeof(array[0])))
 
 int main() {
+  int a[]={0};
+  int ap[10]={};
   /**
    * 1.一维数组
    * 定义：int a[N];
