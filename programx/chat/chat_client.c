@@ -28,13 +28,13 @@ int main2(int argc, char const *argv[]) {
     serv_addr.sin_port = htons(PORT);
 
     // 将 IPv4 地址从文本转换为二进制
-    if(inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr)<=0) {
+    if (inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr) <= 0) {
         printf("\nInvalid address/ Address not supported \n");
         return -1;
     }
 
     // 连接到服务器
-    if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
+    if (connect(sock, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0) {
         printf("\nConnection Failed \n");
         return -1;
     }
@@ -47,6 +47,7 @@ int main2(int argc, char const *argv[]) {
 
     return 0;
 }
+
 //https://chat18.aichatos.xyz/#/chat/1701306605995
 int main(int argc, char *argv[]) {
     int sock = 0;
@@ -91,6 +92,7 @@ int main(int argc, char *argv[]) {
 
 }
 
+//写一个程序chatbox , 运行时候拥有两个子进程p1,p2,当在AB两个主机上运行的时候，A主机中的p1进程
 
 //int main(int argc, char const *argv[]) {
 //    int sock = 0;

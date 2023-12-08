@@ -19,6 +19,8 @@ file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.c)
 
 
 set(CMAKE_C_STANDARD 99)
+find_package(Threads REQUIRED)
+
 
 # 遍历每个源文件，创建对应的可执行文件对象
 foreach(source ${SOURCES})
@@ -29,7 +31,12 @@ foreach(source ${SOURCES})
     message(${S_TO_E})
     # 添加可执行文件对象
     add_executable(${MyExecutable} ${source})
+    target_link_libraries(${MyExecutable} PRIVATE Threads::Threads)  # 链接 pthread 库
 endforeach()
+
+
+
+
 
 
 # 语法可参考https://cmake.org/cmake/help/latest/command/get_filename_component.html#get-filename-component
