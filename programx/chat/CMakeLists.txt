@@ -46,4 +46,4 @@ endforeach()
 #    NAME_WE   = File name with neither the directory nor the longest extension
 #    LAST_EXT  = File name last extension (.c from d/a.b.c)
 #    NAME_WLE  = File name with neither the directory nor the last extension
-#    PATH      = Legacy alias for DIRECTORY (use for CMake <= 2.8.11)
+#    PATH      = Legacy alias for DIRECTORSTDOUT_FILENOSTDOUT_FILENOY (use for CMake <= 2.8.11)
