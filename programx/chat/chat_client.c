@@ -48,7 +48,7 @@ int main2(int argc, char const *argv[]) {
     return 0;
 }
 
-//https://chat18.aichatos.xyz/#/chat/1701306605995
+
 int main(int argc, char *argv[]) {
     int sock = 0;
     struct sockaddr_in serv_addr;

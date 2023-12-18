@@ -18,9 +18,10 @@
 #define SLEEP   5
 #endif
 
+#include "unet/sock.h"
+
 int
-createSocket(void)
-{
+createSocket(void) {
     int sock;
     socklen_t length;
     struct sockaddr_in server;
@@ -34,21 +35,21 @@ createSocket(void)
     }
 
     server.sin_family = PF_INET;
-    server.sin_addr.s_addr =  htonl(INADDR_ANY);
+    server.sin_addr.s_addr = htonl(INADDR_ANY);
     server.sin_port = 0;
-    if (bind(sock, (struct sockaddr *)&server, sizeof(server)) != 0) {
+    if (bind(sock, (struct sockaddr *) &server, sizeof(server)) != 0) {
         perror("binding stream socket");
         exit(EXIT_FAILURE);
         /* NOTREACHED */
     }
 
     length = sizeof(server);
-    if (getsockname(sock, (struct sockaddr *)&server, &length) != 0) {
+    if (getsockname(sock, (struct sockaddr *) &server, &length) != 0) {
         perror("getting socket name");
         exit(EXIT_FAILURE);
         /* NOTREACHED */
     }
-    (void)printf("Socket has port #%d\n", ntohs(server.sin_port));
+    (void) printf("Socket has port #%d\n", ntohs(server.sin_port));
 
     if (listen(sock, BACKLOG) < 0) {
         perror("listening");
@@ -60,8 +61,7 @@ createSocket(void)
 }
 
 void
-handleSocket(int s)
-{
+handleSocket(int s) {
     int fd, rval;
     char claddr[INET_ADDRSTRLEN];
     struct sockaddr_in client;
@@ -70,7 +70,7 @@ handleSocket(int s)
     length = sizeof(client);
     memset(&client, 0, length);
 
-    if ((fd = accept(s, (struct sockaddr *)&client, &length)) < 0) {
+    if ((fd = accept(s, (struct sockaddr *) &client, &length)) < 0) {
         perror("accept");
         return;
     }
@@ -83,18 +83,18 @@ handleSocket(int s)
         }
 
         if (rval == 0) {
-            (void)printf("Ending connection\n");
+            (void) printf("Ending connection\n");
         } else {
             const char *rip;
             if ((rip = inet_ntop(PF_INET, &(client.sin_addr), claddr, length)) == NULL) {
                 perror("inet_ntop");
                 rip = "unknown";
             } else {
-                (void)printf("Client (%s) sent: %s\n", rip, buf);
+                (void) printf("Client (%s) sent: %s\n", rip, buf);
             }
         }
     } while (rval != 0);
-    (void)close(fd);
+    (void) close(fd);
 }
 
 /*
@@ -102,13 +102,16 @@ handleSocket(int s)
  * before calling accept().
  */
 int
-main()
-{
+main() {
     int s1, s2;
 
     s1 = createSocket();
     s2 = createSocket();
-    (void)printf("s-》 %d , %d\n",s1,s2);
+    NetInfo a = createUdpSocketServer(0);
+    NetInfo b = createTcpSocketServer(0);
+    print_router_ip();
+    (void) printf("s-》 %d , %d\n", s1, s2);
+
 
     for (;;) {
         fd_set ready;

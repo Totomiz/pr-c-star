@@ -14,5 +14,8 @@ string(REPLACE "/" "-" project_name ${project_name})
 project(${project_name})
 message("load project : ${project_name}")
 
+add_subdirectory(unet)
 add_executable(cbo cbox.c)
 add_executable(cbo2 cbox2.c)
+
+target_link_libraries(cbo unet)
