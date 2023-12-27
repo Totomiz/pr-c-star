@@ -75,6 +75,7 @@ createTcpSocketServer(int port) {
     NetInfo info;
     info.s_fd = sock;
     info.s_port = server.sin_port;
+    info.addr = server;
     return info;
 }
 
@@ -111,7 +112,7 @@ createUdpSocketServer(int port) {
     NetInfo info;
     info.s_port = server.sin_port;
     info.s_fd = udpFd;
-
+    info.addr = server;
     return info;
 }
 
