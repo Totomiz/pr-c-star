@@ -24,15 +24,7 @@
 #ifndef SLEEP
 #define SLEEP   5
 #endif
-#define LOGD(...) do{ \
-                        printf(__VA_ARGS__);  \
-                        printf("\n"); \
-                    } while(0)
 
-#define LOGE(...) do{ \
-                        fprintf(stderr,__VA_ARGS__); \
-                        printf(": %s\n",strerror(errno)); \
-                    } while(0)
 
 
 NetInfo

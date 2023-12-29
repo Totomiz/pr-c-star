@@ -75,6 +75,7 @@ handleSocket(int s) {
         return;
     }
 
+
     do {
         char buf[BUFSIZ];
         bzero(buf, sizeof(buf));
@@ -97,6 +98,52 @@ handleSocket(int s) {
     (void) close(fd);
 }
 
+void
+handTcpSocket(int s, Callback callback) {
+    int fd, rval;
+    char claddr[INET_ADDRSTRLEN];
+    struct sockaddr_in client;
+    socklen_t length;
+
+    length = sizeof(client);
+    memset(&client, 0, length);
+
+    if ((fd = accept(s, (struct sockaddr *) &client, &length)) < 0) {
+        perror("accept");
+        return;
+    }
+
+
+    do {
+        char buf[BUFSIZ];
+        bzero(buf, sizeof(buf));
+        if ((rval = read(fd, buf, BUFSIZ)) < 0) {
+            perror("reading stream message");
+        }
+
+        if (rval == 0) {
+            (void) printf("Ending connection\n");
+        } else {
+            const char *rip;
+            if ((rip = inet_ntop(PF_INET, &(client.sin_addr), claddr, length)) == NULL) {
+                perror("inet_ntop");
+                rip = "unknown";
+            } else {
+                (void) printf("Client (%s) sent: %s\n", rip, buf);
+                if(callback !=NULL){
+                    callback(buf);
+
+                }
+            }
+        }
+    } while (rval != 0);
+    (void) close(fd);
+}
+
+void handleMs(char *msg) {
+    LOGD("msg == %s", msg);
+}
+
 /*
  * This program uses select() to check that someone is trying to connect
  * before calling accept().
@@ -105,10 +152,11 @@ int
 main() {
     int s1, s2;
 
-    s1 = createSocket();
-    s2 = createSocket();
     NetInfo a = createUdpSocketServer(0);
     NetInfo b = createTcpSocketServer(0);
+    s1 = a.s_fd;
+    s2 = b.s_fd;
+    LOGD("THIS");
     print_router_ip();
     (void) printf("s-》 %d , %d\n", s1, s2);
 
@@ -128,10 +176,11 @@ main() {
         }
 
         if (FD_ISSET(s1, &ready)) {
-            handleSocket(s1);
+            handTcpSocket(s1, NULL);
         }
         if (FD_ISSET(s2, &ready)) {
-            handleSocket(s2);
+            handTcpSocket(s2, handleMs);
+//            handleSocket(s2);
         }
     }
 
