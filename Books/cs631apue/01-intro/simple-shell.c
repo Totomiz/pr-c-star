@@ -15,15 +15,15 @@ int main(int argc, char *args[]) {
     int status;
     printf("%% ");
     while (fgets(buff, BUFSIZ, stdin) != NULL) {
-        if(buff[strlen(buff)-1] == '\n')
-            buff[strlen(buff)-1] = 0;
+        if (buff[strlen(buff) - 1] == '\n')
+            buff[strlen(buff) - 1] = 0;
         pid = fork();
         if (pid == 0) {
             execlp(buff, buff, (char *) 0);
             exit(127);
         }
 //        if (pid > 0) {
-            waitpid(pid, &status, 0);
+        waitpid(pid, &status, 0);
 //        }
         printf("%% ");
     }

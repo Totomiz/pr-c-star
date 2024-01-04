@@ -6,6 +6,6 @@
 
 int main() {
     printf("Welcome to the apue ,%s\n", getlogin());
-    printf("My process id ,%ld\n", (long)getpid());
+    printf("My process id ,%ld\n", (long) getpid());
     return 0;
 }
