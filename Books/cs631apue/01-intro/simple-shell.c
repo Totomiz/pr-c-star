@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <string.h>
+#include <sysexits.h>
+#include <errno.h>
 
 
 int main(int argc, char *args[]) {
@@ -17,15 +19,22 @@ int main(int argc, char *args[]) {
     while (fgets(buff, BUFSIZ, stdin) != NULL) {
         if (buff[strlen(buff) - 1] == '\n')
             buff[strlen(buff) - 1] = 0;
+
         pid = fork();
         if (pid == 0) {
             execlp(buff, buff, (char *) 0);
-            exit(127);
+            //execlp执行失败才会执行下面的输出
+            printf("parent pid = %d ,child pid = %d \n",getppid(),getpid());
+            fprintf(stderr, "shell: couldn't exec %s: %s\n", buff,
+                    strerror(errno));
+            exit(EX_UNAVAILABLE);
         }
 //        if (pid > 0) {
-        waitpid(pid, &status, 0);
+        printf("pid before: %d\n",pid);
+        pid_t wait_Pid = waitpid(pid, &status, 0);
+        printf("pid wait_Pid: %d\n",wait_Pid);
 //        }
         printf("%% ");
     }
-    exit(0);
+    exit(EXIT_SUCCESS);
 }
